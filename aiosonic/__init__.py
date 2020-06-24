@@ -478,7 +478,8 @@ class HTTPClient:
                   ssl: SSLContext = None,
                   timeouts: Timeouts = None,
                   follow: bool = False,
-                  http2: bool = False) -> HttpResponse:
+                  http2: bool = False,
+                  encode: bool = False) -> HttpResponse:
         """Do get http request. """
         return await self.request(url,
                                   'GET',
@@ -488,7 +489,8 @@ class HTTPClient:
                                   ssl=ssl,
                                   follow=follow,
                                   timeouts=timeouts,
-                                  http2=http2)
+                                  http2=http2,
+                                  encode=encode)
 
     async def post(self,
                    url: str,
