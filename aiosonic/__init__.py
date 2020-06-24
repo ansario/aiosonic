@@ -613,7 +613,8 @@ class HTTPClient:
                       ssl: SSLContext = None,
                       timeouts: Timeouts = None,
                       follow: bool = False,
-                      http2: bool = False) -> HttpResponse:
+                      http2: bool = False,
+                      encode: bool = False) -> HttpResponse:
         """Do http request.
 
         Params:
@@ -631,8 +632,11 @@ class HTTPClient:
             * **follow**: parameter to indicate whether to follow redirects
             * **http2**: flag to indicate whether to use http2 (experimental)
         """
-        urlparsed = _get_url_parsed(url)
-
+        if encode:
+            urlparsed = _get_url_parsed(url)
+        else:
+            urlparsed = url
+            
         boundary = None
         headers = headers or {}
         body: ParsedBodyType = b''
